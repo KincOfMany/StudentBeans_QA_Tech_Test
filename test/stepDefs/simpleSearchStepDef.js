@@ -11,13 +11,14 @@ Given("I am on the studentbeans homepage", async () => {
 
 Given("I open the search bar", async () => {
   await simpleSearchPageObject.clickOnSearch();
-  await simpleSearchPageObject.verifySearch();
+  await simpleSearchPageObject.verifySearchClick();
 });
 
 When('I enter "Samsung"', async () => {
-  return 'I enter "Samsung"';
+  await simpleSearchPageObject.enterSearch("Samsung");
 });
 
 Then('I should select the 4th "Samsung" search listing', async () => {
-  return 'I should select the 4th "Samsung" search listing';
+  await simpleSearchPageObject.selectSearchResult(4);
+  await simpleSearchPageObject.verifySearchResult("samsung");
 });

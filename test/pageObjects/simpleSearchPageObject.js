@@ -22,11 +22,31 @@ class SimpleSearchPageObject extends ParentPageObject {
     await $("p=Brands, items or categories").click();
   }
 
-  async verifySearch() {
+  async verifySearchClick() {
     await this.isElementEqualToExpected(
       $("h3=Promoted Offers"),
       "Promoted Offers"
     );
+  }
+
+  async enterSearch(str) {
+    await $('input[data-testid="search-input"]').clearValue();
+    await $('input[data-testid="search-input"]').setValue(str);
+    await expect(
+      await $('input[data-testid="search-input"]').getValue()
+    ).to.equal(str);
+  }
+
+  async selectSearchResult(num) {
+    let index = num - 1;
+    await $("h3=Promoted Offers").waitForExist({ reverse: true });
+    await $$('div[data-testid="search_results_row"] div div')[index].click();
+  }
+
+  async verifySearchResult(str) {
+    let url = await browser.getUrl();
+    console.log(url);
+    expect(url.includes(str)).to.equal(true);
   }
 }
 
