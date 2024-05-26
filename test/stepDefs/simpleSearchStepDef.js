@@ -14,11 +14,11 @@ Given("I open the search bar", async () => {
   await simpleSearchPageObject.verifySearchClick();
 });
 
-When('I enter "Samsung"', async () => {
-  await simpleSearchPageObject.enterSearch("Samsung");
+When("I enter {string}", async (val) => {
+  await simpleSearchPageObject.enterSearch(val);
 });
 
-Then('I should select the 4th "Samsung" search listing', async () => {
+Then("I should select the 4th {string} search listing", async (val) => {
   await simpleSearchPageObject.selectSearchResult(4);
-  await simpleSearchPageObject.verifySearchResult("samsung");
+  await simpleSearchPageObject.verifySearchResult(val.toLowerCase());
 });

@@ -45,7 +45,7 @@ class SimpleSearchPageObject extends ParentPageObject {
 
   async verifySearchResult(str) {
     let url = await browser.getUrl();
-    console.log(url);
+    // console.log(url);
     expect(url.includes(str)).to.equal(true);
   }
 }
