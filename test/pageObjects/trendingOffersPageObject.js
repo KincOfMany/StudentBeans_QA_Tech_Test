@@ -1,27 +1,13 @@
 const ParentPageObject = require("./parentPageObject");
 
 class TrendingOffersPageObject extends ParentPageObject {
-  async goToPage(path) {
-    await browser.url(path);
-    if ($("button=Accept All Cookies").isDisplayed()) {
-      await $("button=Accept All Cookies").click();
-    }
-  }
-
-  async verifyHomePage() {
-    await this.isElementEqualToExpected(
-      $("h2=Student deals of the day"),
-      "Student deals of the day"
-    );
-  }
-
   async clickTrendingNow() {
     await $("a[data-testid='nav-category-trending-now']").click();
   }
 
   async verifyTrendingNow() {
     let url = await browser.getUrl();
-    // not sure if including the query string makes this more fragile but give it shows we got there from the nav bar I want to confirm the path take is as expected
+    // not sure if including the query string makes this more fragile but given it shows we got there from the nav bar I want to confirm the path taken is as expected
     expect(url.includes("trending-discounts?source=nav")).to.equal(true);
   }
 

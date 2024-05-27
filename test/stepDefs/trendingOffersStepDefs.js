@@ -4,8 +4,8 @@ const { When, Then } = require("@wdio/cucumber-framework");
 
 const trendingOffersPageObject = new TrendingOffersPageObject();
 
-Given("I am on {string}", async (url) => {
-  await trendingOffersPageObject.goToPage(url);
+Given("I am on the homepage", async () => {
+  await trendingOffersPageObject.goToHomePage();
   await trendingOffersPageObject.verifyHomePage();
 });
 
